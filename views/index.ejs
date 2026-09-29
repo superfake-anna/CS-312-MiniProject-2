@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="em">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport">
+        <title>Sip Searcher</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <main class="container py-5">
+            <div class="text-center mb-5">
+                <h1>Sip Searcher</h1>
+                <p class="lead">Search for your next cocktail to sip.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2 class="card-title mb-3">Find Your Next Sip</h2>
+                            <form action="/search" method="GET">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name of Cocktail</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Ex: Margarita" required>
+                                </div>
+                                <button type="submit" class="btn btn-outline-light w-100">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% if (error) { %>
+                    <div class="alert alert-danger mt-f" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                
+                <% if (cocktail) { %>
+                    <div class="card shadow mt-5">
+                        <img src="<%= cocktail.strDrinkThumb %>" class="card-img-top cocktail-img" alt="<%= cocktail.strDrink %>"">
+                        <div class="card-body">
+                            <h2 class="card-title"><%= cocktail.strDrink %></h2>
+                            <p class="text-muted"><%= cocktail.strCategory %></p>
+                            <h3>Recipe</h3>
+                            <p><%= cocktail.strInstructions %></p>
+                            <h3>Ingredients</h3>
+                            <ul class="list-group mb-4">
+                                <% for (let i = 1; i < 15; i ++) { %>
+                                    <% const ingredient = cocktail["strIngredient" + i]; %>
+                                    <% const measure = cocktail["strMeasure" + i]; %>
+                                    <% if (ingredient) { %>
+                                        <li class="list-group-item ingr-list">
+                                            <%= measure ? measure : "" %>
+                                            <%= ingredient %>
+                                        </li>
+                                    <% } %>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div> 
+                <% } %>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+body {
+    background-color: #322C2B;
+    color: white;
+}
+.card {
+    background-color: #803D3B;
+    color: white;
+    border-radius: 12px;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.cocktail-img {
+    display: block;
+    margin: 0 auto;
+    max-width: 25%;
+    border-radius: 12px;
+}
+
+.ingr-list {
+    background-color: #322C2B;
+    color: white;
+}
